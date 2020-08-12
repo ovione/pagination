@@ -78,6 +78,10 @@ export class PaginatorComponent {
     return this.currentPage === this.totalNumberOfPages - 1;
   }
 
+  isCurrentPage(pageLink: number): boolean {
+    return this.currentPage === pageLink -1;
+  }
+
   private updateVisiblePage(): void {
     if (this.currentPage > this.pageWindowEnd) {
       this.pageWindowStart += (this.currentPage - this.pageWindowEnd);

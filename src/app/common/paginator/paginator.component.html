@@ -11,7 +11,7 @@
       </a>
     </li>
 
-    <li *ngFor="let pageLink of pageLinks" class="page-item"><a class="page-link" (click)="goToPage(pageLink)">{{pageLink}}</a></li>
+    <li *ngFor="let pageLink of pageLinks" class="page-item" [class.active]="isCurrentPage(pageLink)"><a class="page-link" (click)="goToPage(pageLink)">{{pageLink}}</a></li>
 
     <li class="page-item" [class.disabled]="isLastPage()">
       <a class="page-link" (click)="goToNext()">
