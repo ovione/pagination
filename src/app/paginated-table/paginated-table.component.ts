@@ -31,4 +31,7 @@ export class PaginatedTableComponent implements OnInit {
     this.calculateLength();
   }
 
+  onPageChange(page: number): void {
+    console.log(page);
+  }
 }

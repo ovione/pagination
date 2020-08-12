@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import { PaginatorModel } from './model/paginator.model';
 
@@ -14,6 +14,7 @@ export class PaginatorComponent {
   pageWindowStart = 0;
   pageWindowEnd = 0;
   pageLinks: number[];
+  @Output() onPageChange: EventEmitter<any> = new EventEmitter();
 
   @Input() set paginatorModel(paginatorModel: PaginatorModel) {
     this._paginatorModel = paginatorModel;
@@ -36,28 +37,37 @@ export class PaginatorComponent {
     this.recalculatePageLinks();
   }
 
+  emitOnPageChange(): void {
+    this.onPageChange.emit(this.currentPage + 1);
+  }
+
   goToPage(page: number): void {
     this.currentPage = page - 1;
+    this.emitOnPageChange();
   }
 
   goToFirst(): void {
     this.currentPage = 0;
     this.updateVisiblePage();
+    this.emitOnPageChange();
   }
 
   goToPrevious(): void {
     this.currentPage -= 1;
     this.updateVisiblePage();
+    this.emitOnPageChange();
   }
 
   goToNext(): void {
     this.currentPage += 1;
     this.updateVisiblePage();
+    this.emitOnPageChange();
   }
 
   goToLast(): void {
     this.currentPage = this.totalNumberOfPages - 1;
     this.updateVisiblePage();
+    this.emitOnPageChange();
   }
 
   isFirstPage(): boolean {
