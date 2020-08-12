@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {AuditLogModel} from "../audit-log/model/audit-log.model";
 import {AuditLogService} from "../audit-log/services/audit-log.service";
+import {PaginatorModel} from "../common/paginator/model/paginator.model";
 
 @Component({
   selector: 'app-paginated-table',
@@ -10,15 +11,23 @@ import {AuditLogService} from "../audit-log/services/audit-log.service";
 })
 export class PaginatedTableComponent implements OnInit {
   auditLogSet:AuditLogModel[];
+  paginatorModel: PaginatorModel;
+  private rows = 4;
 
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
-    this.auditLogSet = this.auditLogService.get();
+    this.auditLogSet = this.auditLogService.get(33);
+    this.calculateLenght();
+  }
+
+  private calculateLenght() {
+    this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows);
   }
 
   reduce(size: number) {
     this.auditLogSet = this.auditLogService.get(size);
+    this.calculateLenght();
   }
 
 }
