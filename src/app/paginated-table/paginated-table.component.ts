@@ -17,4 +17,8 @@ export class PaginatedTableComponent implements OnInit {
     this.auditLogSet = this.auditLogService.get();
   }
 
+  reduce(size: number) {
+    this.auditLogSet = this.auditLogService.get(size);
+  }
+
 }

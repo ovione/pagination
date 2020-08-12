@@ -1,2 +1,7 @@
-<app-audit-log-table [auditLogSet]="auditLogSet">
+<div class="row">
+  <div class="col-sm-2"><button (click)="reduce(3)">minim</button><button (click)="reduce(13)">max</button></div>
+  <app-audit-log-table class="col-sm-8" [auditLogSet]="auditLogSet"></app-audit-log-table>
+  <div class="col-sm-2"></div>
+</div>
+
 

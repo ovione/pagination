@@ -10,7 +10,7 @@ export class AuditLogService {
 
   constructor() { }
 
-  get(): AuditLogModel[] {
-    return getAuditLogMock();
+  get(size: number = 32): AuditLogModel[] {
+    return getAuditLogMock(size);
   }
 }
