@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {AuditLogModel} from "../audit-log/model/audit-log.model";
-import {AuditLogService} from "../audit-log/services/audit-log.service";
-import {PaginatorModel} from "../common/paginator/model/paginator.model";
+import {AuditLogModel} from '../audit-log/model/audit-log.model';
+import {AuditLogService} from '../audit-log/services/audit-log.service';
+import {PaginatorModel} from '../common/paginator/model/paginator.model';
 
 @Component({
   selector: 'app-paginated-table',
@@ -10,7 +10,7 @@ import {PaginatorModel} from "../common/paginator/model/paginator.model";
   styleUrls: ['./paginated-table.component.scss']
 })
 export class PaginatedTableComponent implements OnInit {
-  auditLogSet:AuditLogModel[];
+  auditLogSet: AuditLogModel[];
   paginatorModel: PaginatorModel;
   private rows = 4;
   private visiblePages = 5;
@@ -19,16 +19,16 @@ export class PaginatedTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.auditLogSet = this.auditLogService.get(33);
-    this.calculateLenght();
+    this.calculateLength();
   }
 
-  private calculateLenght() {
+  private calculateLength() {
     this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows, this.visiblePages);
   }
 
   reduce(size: number) {
     this.auditLogSet = this.auditLogService.get(size);
-    this.calculateLenght();
+    this.calculateLength();
   }
 
 }

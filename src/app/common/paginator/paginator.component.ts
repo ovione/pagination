@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 
-import { PaginatorModel } from "./model/paginator.model";
+import { PaginatorModel } from './model/paginator.model';
 
 @Component({
   selector: 'app-paginator',
@@ -22,39 +22,39 @@ export class PaginatorComponent {
     return this._paginatorModel;
   }
 
-  private calculatePageCount() {
-    this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords/this.paginatorModel.rows) || 1;
+  private calculatePageCount(): void {
+    this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords / this.paginatorModel.rows) || 1;
   }
 
-  goToRow(row: number) {
+  goToRow(row: number): void {
     this.currentRow = row;
   }
 
-  goToFirst() {
+  goToFirst(): void {
     this.currentRow = 1;
   }
 
-  goToPrevious() {
+  goToPrevious(): void {
     this.currentRow -= 1;
   }
 
-  goToNext() {
+  goToNext(): void {
     this.currentRow += 1;
   }
 
-  goToLast() {
+  goToLast(): void {
     this.currentRow = this.totalNumberOfPages;
   }
 
-  isFirstPage() {
+  isFirstPage(): boolean {
     return this.currentRow === 1;
   }
 
-  isLastPage() {
+  isLastPage(): boolean {
     return this.currentRow === this.totalNumberOfPages;
   }
 
-  updatePageLinks() {
+  updatePageLinks(): void {
     this.pageLinks = [];
 
     // for(let i = start; i <= end; i++) {
