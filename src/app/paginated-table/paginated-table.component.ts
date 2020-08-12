@@ -11,27 +11,39 @@ import {PaginatorModel} from '../common/paginator/model/paginator.model';
 })
 export class PaginatedTableComponent implements OnInit {
   auditLogSet: AuditLogModel[];
+  auditLogSetToDisplay: AuditLogModel[];
   paginatorModel: PaginatorModel;
-  private rows = 4;
+  private rowsPerPage = 4;
   private visiblePages = 5;
+  private currentPage = 1;
 
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
     this.auditLogSet = this.auditLogService.get(33);
-    this.calculateLength();
+    this.calculatePaginatorModel();
+    this.calculateDisplaySet();
   }
 
-  private calculateLength(): void {
-    this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows, this.visiblePages);
+  private calculatePaginatorModel(): void {
+    this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rowsPerPage, this.visiblePages);
   }
 
   reduce(size: number): void {
     this.auditLogSet = this.auditLogService.get(size);
-    this.calculateLength();
+    this.calculatePaginatorModel();
   }
 
   onPageChange(page: number): void {
-    console.log(page);
+    this.currentPage = page;
+    this.calculateDisplaySet();
+  }
+
+  calculateDisplaySet(): void {
+    const start = (this.currentPage - 1) * this.paginatorModel.rowsPerPage;
+    let end = start + this.paginatorModel.rowsPerPage;
+    end = Math.min(end, this.auditLogSet.length);
+
+    this.auditLogSetToDisplay = this.auditLogSet.slice(start, end);
   }
 }

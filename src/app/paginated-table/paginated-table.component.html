@@ -1,6 +1,12 @@
 <div class="row">
-  <div class="col-sm-2"><button (click)="reduce(3)">minim</button><button (click)="reduce(13)">max</button></div>
-  <app-audit-log-table class="col-sm-8" [auditLogSet]="auditLogSet"></app-audit-log-table>
+  <div class="col-sm-2">
+    <button (click)="reduce(3)">3</button>
+    <br/>
+    <button (click)="reduce(13)">13</button>
+    <br/>
+    <button (click)="reduce(20)">20</button>
+  </div>
+  <app-audit-log-table class="col-sm-8" [auditLogSet]="auditLogSetToDisplay"></app-audit-log-table>
   <div class="col-sm-2"></div>
 </div>
 
