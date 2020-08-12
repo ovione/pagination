@@ -9,8 +9,8 @@ import { PaginatorModel } from './model/paginator.model';
 })
 export class PaginatorComponent {
   _paginatorModel: PaginatorModel;
-  totalNumberOfPages = 0;
   currentPage = 0;
+  totalNumberOfPages = 0;
   pageWindowStart = 0;
   pageWindowEnd = 0;
   pageLinks: number[];
@@ -26,6 +26,7 @@ export class PaginatorComponent {
   }
 
   private initializePaginator(): void {
+    this.currentPage = 0;
     this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords / this.paginatorModel.rowsPerPage) || 1;
     this.paginatorModel.visiblePages = Math.min(this.totalNumberOfPages, this.paginatorModel.visiblePages);
     this.pageWindowStart = 0;

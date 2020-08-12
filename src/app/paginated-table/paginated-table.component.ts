@@ -20,9 +20,14 @@ export class PaginatedTableComponent implements OnInit {
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
+    this.resetCurrentPage();
     this.auditLogSet = this.auditLogService.get(33);
     this.calculatePaginatorModel();
     this.calculateDisplaySet();
+  }
+
+  private resetCurrentPage(): void {
+    this.currentPage = 1;
   }
 
   private calculatePaginatorModel(): void {
@@ -30,8 +35,10 @@ export class PaginatedTableComponent implements OnInit {
   }
 
   reduce(size: number): void {
+    this.resetCurrentPage();
     this.auditLogSet = this.auditLogService.get(size);
     this.calculatePaginatorModel();
+    this.calculateDisplaySet();
   }
 
   onPageChange(page: number): void {
