@@ -9,57 +9,81 @@ import { PaginatorModel } from './model/paginator.model';
 })
 export class PaginatorComponent {
   _paginatorModel: PaginatorModel;
-  totalNumberOfPages = 1;
-  currentRow = 1;
+  totalNumberOfPages = 0;
+  currentPage = 0;
+  pageWindowStart = 0;
+  pageWindowEnd = 0;
   pageLinks: number[];
 
   @Input() set paginatorModel(paginatorModel: PaginatorModel) {
     this._paginatorModel = paginatorModel;
-    this.calculatePageCount();
+    this.initializePaginator();
 
   }
   get paginatorModel(): PaginatorModel {
     return this._paginatorModel;
   }
 
-  private calculatePageCount(): void {
-    this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords / this.paginatorModel.rows) || 1;
+  private initializePaginator(): void {
+    this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords / this.paginatorModel.rowsPerPage) || 1;
+    this.paginatorModel.visiblePages = Math.min(this.totalNumberOfPages, this.paginatorModel.visiblePages);
+    this.pageWindowStart = 0;
+    this.calculatePageWindowEnd();
   }
 
-  goToRow(row: number): void {
-    this.currentRow = row;
+  private calculatePageWindowEnd(): void {
+    this.pageWindowEnd = this.pageWindowStart + this.paginatorModel.visiblePages - 1;
+    this.recalculatePageLinks();
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page - 1;
   }
 
   goToFirst(): void {
-    this.currentRow = 1;
+    this.currentPage = 0;
+    this.updateVisiblePage();
   }
 
   goToPrevious(): void {
-    this.currentRow -= 1;
+    this.currentPage -= 1;
+    this.updateVisiblePage();
   }
 
   goToNext(): void {
-    this.currentRow += 1;
+    this.currentPage += 1;
+    this.updateVisiblePage();
   }
 
   goToLast(): void {
-    this.currentRow = this.totalNumberOfPages;
+    this.currentPage = this.totalNumberOfPages - 1;
+    this.updateVisiblePage();
   }
 
   isFirstPage(): boolean {
-    return this.currentRow === 1;
+    return this.currentPage === 1;
   }
 
   isLastPage(): boolean {
-    return this.currentRow === this.totalNumberOfPages;
+    return this.currentPage === this.totalNumberOfPages;
   }
 
-  updatePageLinks(): void {
+  private updateVisiblePage(): void {
+    if (this.currentPage > this.pageWindowEnd) {
+      this.pageWindowStart += 1;
+      this.calculatePageWindowEnd();
+    } else if (this.currentPage < this.pageWindowStart) {
+      this.pageWindowStart -= 1;
+      this.calculatePageWindowEnd();
+    }
+  }
+
+  private recalculatePageLinks(): void {
     this.pageLinks = [];
 
-    // for(let i = start; i <= end; i++) {
-    //   this.pageLinks.push(i + 1);
-    // }
+    for (let i = this.pageWindowStart; i <= this.pageWindowEnd; i++) {
+      this.pageLinks.push(i + 1);
+    }
   }
 }
 

@@ -124,6 +124,7 @@
         "allow-leading-underscore"
       ]
     },
+    "no-trailing-whitespace": false,
     "whitespace": {
       "options": [
         "check-branch",
