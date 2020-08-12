@@ -9,8 +9,9 @@ import { PaginatorModel } from "./model/paginator.model";
 })
 export class PaginatorComponent {
   _paginatorModel: PaginatorModel;
-  numberOfRows = 1;
-  current = 1;
+  totalNumberOfPages = 1;
+  currentRow = 1;
+  pageLinks: number[];
 
   @Input() set paginatorModel(paginatorModel: PaginatorModel) {
     this._paginatorModel = paginatorModel;
@@ -22,7 +23,43 @@ export class PaginatorComponent {
   }
 
   private calculatePageCount() {
-    this.numberOfRows = Math.ceil(this.paginatorModel.totalRecords/this.paginatorModel.rows) || 1;
+    this.totalNumberOfPages = Math.ceil(this.paginatorModel.totalRecords/this.paginatorModel.rows) || 1;
+  }
+
+  goToRow(row: number) {
+    this.currentRow = row;
+  }
+
+  goToFirst() {
+    this.currentRow = 1;
+  }
+
+  goToPrevious() {
+    this.currentRow -= 1;
+  }
+
+  goToNext() {
+    this.currentRow += 1;
+  }
+
+  goToLast() {
+    this.currentRow = this.totalNumberOfPages;
+  }
+
+  isFirstPage() {
+    return this.currentRow === 1;
+  }
+
+  isLastPage() {
+    return this.currentRow === this.totalNumberOfPages;
+  }
+
+  updatePageLinks() {
+    this.pageLinks = [];
+
+    // for(let i = start; i <= end; i++) {
+    //   this.pageLinks.push(i + 1);
+    // }
   }
 }
 

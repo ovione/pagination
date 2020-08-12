@@ -13,6 +13,7 @@ export class PaginatedTableComponent implements OnInit {
   auditLogSet:AuditLogModel[];
   paginatorModel: PaginatorModel;
   private rows = 4;
+  private visiblePages = 5;
 
   constructor(private auditLogService: AuditLogService) { }
 
@@ -22,7 +23,7 @@ export class PaginatedTableComponent implements OnInit {
   }
 
   private calculateLenght() {
-    this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows);
+    this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows, this.visiblePages);
   }
 
   reduce(size: number) {

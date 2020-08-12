@@ -1,26 +1,26 @@
-{{paginatorModel.totalRecords}} - {{paginatorModel.rows}} - {{numberOfRows}}
+{{paginatorModel.totalRecords}} - {{paginatorModel.rows}} - {{totalNumberOfPages}} - {{currentRow}}
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" >
+    <li class="page-item" [class.disabled]="isFirstPage()">
+      <a class="page-link" (click)="goToFirst()">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#" >
+    <li class="page-item" [class.disabled]="isFirstPage()">
+      <a class="page-link" (click)="goToPrevious()">
         <span aria-hidden="true">&lt;</span>
       </a>
     </li>
 
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link">1</a></li>
 
-    <li class="page-item">
-      <a class="page-link" href="#" >
+    <li class="page-item" [class.disabled]="isLastPage()">
+      <a class="page-link" (click)="goToNext()">
         <span aria-hidden="true">&gt;</span>
       </a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#">
+    <li class="page-item" [class.disabled]="isLastPage()">
+      <a class="page-link" (click)="goToLast()">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
