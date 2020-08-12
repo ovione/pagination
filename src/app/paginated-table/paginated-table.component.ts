@@ -22,11 +22,11 @@ export class PaginatedTableComponent implements OnInit {
     this.calculateLength();
   }
 
-  private calculateLength() {
+  private calculateLength(): void {
     this.paginatorModel = new PaginatorModel( this.auditLogSet.length, this.rows, this.visiblePages);
   }
 
-  reduce(size: number) {
+  reduce(size: number): void {
     this.auditLogSet = this.auditLogService.get(size);
     this.calculateLength();
   }

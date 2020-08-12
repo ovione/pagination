@@ -61,19 +61,19 @@ export class PaginatorComponent {
   }
 
   isFirstPage(): boolean {
-    return this.currentPage === 1;
+    return this.currentPage === 0;
   }
 
   isLastPage(): boolean {
-    return this.currentPage === this.totalNumberOfPages;
+    return this.currentPage === this.totalNumberOfPages - 1;
   }
 
   private updateVisiblePage(): void {
     if (this.currentPage > this.pageWindowEnd) {
-      this.pageWindowStart += 1;
+      this.pageWindowStart += (this.currentPage - this.pageWindowEnd);
       this.calculatePageWindowEnd();
     } else if (this.currentPage < this.pageWindowStart) {
-      this.pageWindowStart -= 1;
+      this.pageWindowStart -= (this.pageWindowStart - this.currentPage);
       this.calculatePageWindowEnd();
     }
   }

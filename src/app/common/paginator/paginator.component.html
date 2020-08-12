@@ -1,4 +1,8 @@
-{{paginatorModel.totalRecords}} - {{paginatorModel.rowsPerPage}} - {{totalNumberOfPages}} - {{currentPage}}
+total records: {{paginatorModel.totalRecords}} -
+rows per page: {{paginatorModel.rowsPerPage}} -
+visible pages: {{paginatorModel.visiblePages}} -
+nr of pages: {{totalNumberOfPages}} -
+current page: {{currentPage}}
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item" [class.disabled]="isFirstPage()">
