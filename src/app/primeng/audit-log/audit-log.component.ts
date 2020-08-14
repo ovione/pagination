@@ -78,11 +78,11 @@ import { AuditLogRequestModel } from '../../common/model/audit-log-request.model
     `]
 })
 export class AuditLogComponent implements OnInit {
-  auditLogs: AuditLogModel[] = [];
+  valueObjects: AuditLogModel[] = [];
   public currentPage = 1;
   private rowsPerPage = 4;
   private visiblePages = 5;
-  private cols: Array<any> = [];
+  public cols: Array<any> = [];
 
   constructor(private auditLogService: AuditLogService) { }
 
@@ -118,7 +118,7 @@ export class AuditLogComponent implements OnInit {
   }
 
   private handleAuditLogs(auditLogs: AuditLogModel[]): void {
-    this.auditLogs = auditLogs;
+    this.valueObjects = auditLogs;
   }
 
   previous(): void {

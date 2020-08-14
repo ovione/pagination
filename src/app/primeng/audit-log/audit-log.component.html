@@ -5,25 +5,20 @@
     <button (click)="next()">next</button>
   </div>
   <div class="col-sm-8">
-    <p-table [value]="auditLogs">
+    <p-table [value]="valueObjects">
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
-          <th>Date</th>
-          <th>Action</th>
-          <th>Username</th>
-          <th>Comment</th>
-          <th>Link</th>
+          <th *ngFor="let col of cols">
+            {{col.header}}
+          </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-auditLog>
+      <ng-template pTemplate="body" let-vo>
         <tr>
-          <td>{{auditLog.id}}</td>
-          <td>{{auditLog.date}}</td>
-          <td>{{auditLog.action}}</td>
-          <td>{{auditLog.username}}</td>
-          <td>{{auditLog.comment}}</td>
-          <td>{{auditLog.link}}</td>
+        <tr>
+          <td *ngFor="let col of cols">
+            {{vo[col.field]}}
+          </td>
         </tr>
       </ng-template>
     </p-table>
