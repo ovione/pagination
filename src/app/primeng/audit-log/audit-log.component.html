@@ -5,7 +5,7 @@
     <button (click)="next()">next</button>
   </div>
   <div class="col-sm-8">
-    <p-table [value]="valueObjects">
+    <p-table [value]="valueObjects" [responsive]="true">
       <ng-template pTemplate="header">
         <tr>
           <th *ngFor="let col of cols">
