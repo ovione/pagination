@@ -25,6 +25,10 @@ export class TestComponent implements OnInit {
     this.datasource = this.auditLogService.get();
     this.totalRecords = this.datasource.length;
 
+    this.initializePrimengTable();
+  }
+
+  private initializePrimengTable(): void {
     this.cols = [
       { field: 'id', header: 'Id' },
       { field: 'date', header: 'Date' },
@@ -33,8 +37,6 @@ export class TestComponent implements OnInit {
       { field: 'comment', header: 'Comment' },
       { field: 'link', header: 'Link' }
     ];
-
-    this.loading = true;
   }
 
   loadCarsLazy(event: LazyLoadEvent): void {
