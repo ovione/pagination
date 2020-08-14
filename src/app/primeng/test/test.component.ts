@@ -3,6 +3,7 @@ import { LazyLoadEvent } from 'primeng';
 import { AuditLogModel } from '../../common/model/audit-log.model';
 import { AuditLogService } from '../../common/services/audit-log.service';
 import { AuditLogResponseModel } from '../../common/model/audit-log-response.model';
+import { AuditLogRequestModel } from '../../common/model/audit-log-request.model';
 
 @Component({
   selector: 'app-test',
@@ -17,14 +18,13 @@ export class TestComponent implements OnInit {
   totalRecords: number;
 
   datasource: AuditLogModel[];
-  cars: AuditLogModel[];
+  cars: AuditLogModel[] = [];
 
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
     this.datasource = this.auditLogService.get();
-    this.totalRecords = this.datasource.length;
-
+    this.loading = false;
     this.initializePrimengTable();
   }
 
@@ -44,27 +44,32 @@ export class TestComponent implements OnInit {
 
     setTimeout(() => {
       if (this.datasource) {
+        this.totalRecords = this.datasource.length;
         this.cars = this.datasource.slice(event.first, (event.first + event.rows));
         this.loading = false;
       }
     }, 1000);
   }
-  //
-  // getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {
-  //   this.loading = true;
-  //   this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
-  //     next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
-  //     error: (error) => this.handleException(error)
-  //   });
-  // }
-  //
-  // private handleException(error: any): void {
-  //   console.log('exception ' + error);
-  // }
-  //
-  // private handleAuditLogsResponse(auditLogsResponse: AuditLogResponseModel): void {
-  //   this.loading = false;
-  //   this.rowsData = auditLogsResponse.auditLogs;
-  //   this.totalRecords = auditLogsResponse.totalRecords;
-  // }
+
+  getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {
+    this.loading = true;
+    this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
+      next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
+      error: (error) => this.handleException(error)
+    });
+  }
+
+  private constructAuditLogRequestModel(event: LazyLoadEvent): AuditLogRequestModel {
+    return new AuditLogRequestModel(event.first, event.rows);
+  }
+
+  private handleException(error: any): void {
+    console.log('exception ' + error);
+  }
+
+  private handleAuditLogsResponse(auditLogsResponse: AuditLogResponseModel): void {
+    this.loading = false;
+    this.rowsData = auditLogsResponse.auditLogs;
+    this.totalRecords = auditLogsResponse.totalRecords;
+  }
 }

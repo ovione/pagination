@@ -7,8 +7,7 @@
              [paginator]="true"
              [lazy]="true"
              [rows]="rowsPerPage"
-             [totalRecords]="totalRecords"
-             [loading]="loading">
+             [totalRecords]="totalRecords">
       <ng-template pTemplate="header" let-cols>
         <tr>
           <th *ngFor="let col of cols">
