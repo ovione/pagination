@@ -79,22 +79,16 @@ import { AuditLogRequestModel } from '../../common/model/audit-log-request.model
 })
 export class AuditLogComponent implements OnInit {
   auditLogs: AuditLogModel[] = [];
-  private currentPage = 1;
+  public currentPage = 1;
   private rowsPerPage = 4;
   private visiblePages = 5;
-  private auditLogRequest: AuditLogRequestModel;
   private cols: Array<any> = [];
 
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
-    this.auditLogRequest = this.constructAuditLogRequestModel();
     this.initializePrimengTable();
-
-    this.auditLogService.getAsynch(this.auditLogRequest).subscribe({
-      next: (auditLogs: AuditLogModel[]) => this.handleAuditLogs(auditLogs),
-      error: (error) => this.handleException(error)
-    });
+    this.getAuditLogs();
   }
 
   private initializePrimengTable(): void {
@@ -108,6 +102,13 @@ export class AuditLogComponent implements OnInit {
     ];
   }
 
+  private getAuditLogs(): void {
+    this.auditLogService.getAsynch(this.constructAuditLogRequestModel()).subscribe({
+      next: (auditLogs: AuditLogModel[]) => this.handleAuditLogs(auditLogs),
+      error: (error) => this.handleException(error)
+    });
+  }
+
   private constructAuditLogRequestModel(): AuditLogRequestModel {
     return new AuditLogRequestModel(this.currentPage, this.rowsPerPage);
   }
@@ -118,5 +119,15 @@ export class AuditLogComponent implements OnInit {
 
   private handleAuditLogs(auditLogs: AuditLogModel[]): void {
     this.auditLogs = auditLogs;
+  }
+
+  previous(): void {
+    this.currentPage -= 1;
+    this.getAuditLogs();
+  }
+
+  next(): void {
+    this.currentPage += 1;
+    this.getAuditLogs();
   }
 }

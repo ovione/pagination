@@ -22,7 +22,9 @@ export class AuditLogService {
   getAsynch(alrm: AuditLogRequestModel): Observable<AuditLogModel[]> {
     const totalNumberOfPages = Math.ceil(this.auditLogs.length / alrm.rowsPerPage) || 1;
 
-    if (alrm.pageNumber < -1 || alrm.pageNumber > totalNumberOfPages) {
+    if (alrm.pageNumber < 1)  {
+      alrm.pageNumber = 1;
+    } else if (alrm.pageNumber > totalNumberOfPages) {
       alrm.pageNumber = totalNumberOfPages;
     }
 
