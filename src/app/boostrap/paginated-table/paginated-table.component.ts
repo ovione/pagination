@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {AuditLogModel} from '../../common/model/audit-log.model';
 import {AuditLogService} from '../../common/services/audit-log.service';
-import {PaginatorModel} from '../common/paginator/model/paginator.model';
+import {PaginatorModel} from '../../common/model/paginator.model';
 
 @Component({
   selector: 'app-paginated-table',

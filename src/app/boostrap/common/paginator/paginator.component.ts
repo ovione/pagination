@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
-import { PaginatorModel } from './model/paginator.model';
+import { PaginatorModel } from '../../../common/model/paginator.model';
 
 @Component({
   selector: 'app-paginator',
@@ -80,7 +80,7 @@ export class PaginatorComponent {
   }
 
   isCurrentPage(pageLink: number): boolean {
-    return this.currentPage === pageLink -1;
+    return this.currentPage === pageLink - 1;
   }
 
   private updateVisiblePage(): void {
