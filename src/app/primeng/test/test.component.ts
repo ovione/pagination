@@ -11,7 +11,7 @@ import { AuditLogRequestModel } from '../../common/model/audit-log-request.model
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  rowsData: AuditLogModel[] = [];
+  rowsData: AuditLogModel[];
   rowsPerPage = 4;
   cols: any[];
   loading: boolean;

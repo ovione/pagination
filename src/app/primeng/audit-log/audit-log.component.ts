@@ -12,7 +12,7 @@ import { LazyLoadEvent } from 'primeng';
   styleUrls: ['./audit-log.component.scss']
 })
 export class AuditLogComponent implements OnInit {
-  rowsData: AuditLogModel[] = [];
+  rowsData: AuditLogModel[];
   rowsPerPage = 4;
   cols: any[];
   loading: boolean;
@@ -24,7 +24,7 @@ export class AuditLogComponent implements OnInit {
     this.initializePrimengTable();
   }
 
-  getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {
+  getRowsData(event: LazyLoadEvent): void {
     this.loading = true;
     this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
       next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),

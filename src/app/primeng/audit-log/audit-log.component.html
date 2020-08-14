@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-2"></div>
+  <div class="col-sm-2">yes</div>
   <div class="col-sm-8">
     <p-table [value]="rowsData"
              [responsive]="true"
@@ -7,8 +7,7 @@
              [paginator]="true"
              [lazy]="true"
              [rows]="rowsPerPage"
-             [totalRecords]="totalRecords"
-             [loading]="loading">
+             [totalRecords]="totalRecords">
       <ng-template pTemplate="header" let-cols>
         <tr>
           <th *ngFor="let col of cols">
