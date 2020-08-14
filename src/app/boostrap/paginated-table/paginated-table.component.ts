@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {AuditLogModel} from '../audit-log/model/audit-log.model';
-import {AuditLogService} from '../audit-log/services/audit-log.service';
+import {AuditLogModel} from '../../common/model/audit-log.model';
+import {AuditLogService} from '../../common/services/audit-log.service';
 import {PaginatorModel} from '../common/paginator/model/paginator.model';
 
 @Component({
