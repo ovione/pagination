@@ -21,8 +21,8 @@ export class AuditLogService {
   }
 
   getAsynch(alrm: AuditLogRequestModel): Observable<AuditLogResponseModel> {
-    const start = (alrm.pageNumber - 1) * alrm.rowsPerPage;
-    const end = Math.min(start + alrm.rowsPerPage, this.auditLogs.length);
+    const start = alrm.start;
+    const end = start + alrm.rowsPerPage;
 
     return of(new AuditLogResponseModel(this.auditLogs.slice(start, end), this.auditLogs.length));
   }

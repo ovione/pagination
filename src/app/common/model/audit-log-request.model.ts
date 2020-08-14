@@ -1,3 +1,3 @@
 export class AuditLogRequestModel {
-  constructor(public pageNumber: number, public rowsPerPage: number) {}
+  constructor(public start: number, public rowsPerPage: number) {}
 }

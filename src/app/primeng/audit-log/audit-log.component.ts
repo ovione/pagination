@@ -22,7 +22,6 @@ export class AuditLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializePrimengTable();
-    this.getRowsData();
   }
 
   getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {

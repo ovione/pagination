@@ -17,13 +17,9 @@ export class TestComponent implements OnInit {
   loading: boolean;
   totalRecords: number;
 
-  datasource: AuditLogModel[];
-  cars: AuditLogModel[] = [];
-
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
-    this.datasource = this.auditLogService.get();
     this.loading = false;
     this.initializePrimengTable();
   }
@@ -39,19 +35,7 @@ export class TestComponent implements OnInit {
     ];
   }
 
-  loadCarsLazy(event: LazyLoadEvent): void {
-    this.loading = true;
-
-    setTimeout(() => {
-      if (this.datasource) {
-        this.totalRecords = this.datasource.length;
-        this.cars = this.datasource.slice(event.first, (event.first + event.rows));
-        this.loading = false;
-      }
-    }, 1000);
-  }
-
-  getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {
+  getRowsData(event: LazyLoadEvent): void {
     this.loading = true;
     this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
       next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
