@@ -20,7 +20,6 @@ export class TestComponent implements OnInit {
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
-    this.loading = false;
     this.initializePrimengTable();
   }
 
