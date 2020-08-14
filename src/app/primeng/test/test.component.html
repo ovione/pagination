@@ -1,18 +1,25 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8">
-    <p-table [columns]="cols" [value]="cars" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)"
-             [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
-      <ng-template pTemplate="header" let-columns>
+    <p-table
+             [value]="cars"
+             [lazy]="true"
+             (onLazyLoad)="loadCarsLazy($event)"
+             [paginator]="true"
+             [rows]="4"
+             [totalRecords]="totalRecords"
+             [loading]="loading">
+      <ng-template pTemplate="header" let-cols>
         <tr>
-          <th *ngFor="let col of columns">
+          <th *ngFor="let col of cols">
             {{col.header}}
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <ng-template pTemplate="body" let-rowData >
         <tr>
-          <td *ngFor="let col of columns">
+          <td *ngFor="let col of cols">
+            <span class="ui-column-title">{{col.header}}</span>
             {{rowData[col.field]}}
           </td>
         </tr>

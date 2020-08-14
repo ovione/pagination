@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuditLogService } from '../../common/services/audit-log.service';
 import { AuditLogModel } from '../../common/model/audit-log.model';
-import { PaginatorModel } from '../../common/model/paginator.model';
 import { AuditLogRequestModel } from '../../common/model/audit-log-request.model';
 import { AuditLogResponseModel } from '../../common/model/audit-log-response.model';
 import { LazyLoadEvent } from 'primeng';
