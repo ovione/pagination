@@ -78,7 +78,7 @@ import { AuditLogRequestModel } from '../../common/model/audit-log-request.model
     `]
 })
 export class AuditLogComponent implements OnInit {
-  valueObjects: AuditLogModel[] = [];
+  rowsData: AuditLogModel[] = [];
   public currentPage = 1;
   private rowsPerPage = 4;
   private visiblePages = 5;
@@ -118,7 +118,7 @@ export class AuditLogComponent implements OnInit {
   }
 
   private handleAuditLogs(auditLogs: AuditLogModel[]): void {
-    this.valueObjects = auditLogs;
+    this.rowsData = auditLogs;
   }
 
   previous(): void {
