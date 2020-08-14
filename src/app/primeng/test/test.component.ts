@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng';
 import { CarService } from './carservice';
 import { Car } from './car';
+import { AuditLogModel } from '../../common/model/audit-log.model';
+import { AuditLogService } from '../../common/services/audit-log.service';
 
 @Component({
   selector: 'app-test',
@@ -9,9 +11,9 @@ import { Car } from './car';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  datasource: Car[];
+  datasource: AuditLogModel[];
 
-  cars: Car[];
+  cars: AuditLogModel[];
 
   totalRecords: number;
 
@@ -19,17 +21,19 @@ export class TestComponent implements OnInit {
 
   loading: boolean;
 
-  constructor(private carService: CarService) { }
+  constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
-    this.datasource = this.carService.getCarsLarge();
+    this.datasource = this.auditLogService.get();
     this.totalRecords = this.datasource.length;
 
     this.cols = [
-      { field: 'vin', header: 'Vin' },
-      { field: 'year', header: 'Year' },
-      { field: 'brand', header: 'Brand' },
-      { field: 'color', header: 'Color' }
+      { field: 'id', header: 'Id' },
+      { field: 'date', header: 'Date' },
+      { field: 'action', header: 'Action' },
+      { field: 'username', header: 'User name' },
+      { field: 'comment', header: 'Comment' },
+      { field: 'link', header: 'Link' }
     ];
 
     this.loading = true;
