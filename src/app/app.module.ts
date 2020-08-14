@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaginatedTableModule } from './boostrap/paginated-table/paginated-table.module';
 import { AuditLogModule } from './primeng/audit-log/audit-log.module';
+import { TestModule } from './primeng/test/test.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuditLogModule } from './primeng/audit-log/audit-log.module';
     AppRoutingModule,
 
     PaginatedTableModule,
-    AuditLogModule
+    AuditLogModule,
+    TestModule
   ],
   providers: [],
   bootstrap: [AppComponent]
