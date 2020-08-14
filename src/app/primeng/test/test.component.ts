@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng';
-import { CarService } from './carservice';
-import { Car } from './car';
 import { AuditLogModel } from '../../common/model/audit-log.model';
 import { AuditLogService } from '../../common/services/audit-log.service';
+import { AuditLogResponseModel } from '../../common/model/audit-log-response.model';
 
 @Component({
   selector: 'app-test',
@@ -11,15 +10,14 @@ import { AuditLogService } from '../../common/services/audit-log.service';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  datasource: AuditLogModel[];
-
-  cars: AuditLogModel[];
-
+  rowsData: AuditLogModel[] = [];
+  rowsPerPage = 4;
+  cols: any[];
+  loading: boolean;
   totalRecords: number;
 
-  cols: any[];
-
-  loading: boolean;
+  datasource: AuditLogModel[];
+  cars: AuditLogModel[];
 
   constructor(private auditLogService: AuditLogService) { }
 
@@ -49,4 +47,22 @@ export class TestComponent implements OnInit {
       }
     }, 1000);
   }
+  //
+  // getRowsData(event: LazyLoadEvent = {first: 1, rows: this.rowsPerPage}): void {
+  //   this.loading = true;
+  //   this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
+  //     next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
+  //     error: (error) => this.handleException(error)
+  //   });
+  // }
+  //
+  // private handleException(error: any): void {
+  //   console.log('exception ' + error);
+  // }
+  //
+  // private handleAuditLogsResponse(auditLogsResponse: AuditLogResponseModel): void {
+  //   this.loading = false;
+  //   this.rowsData = auditLogsResponse.auditLogs;
+  //   this.totalRecords = auditLogsResponse.totalRecords;
+  // }
 }

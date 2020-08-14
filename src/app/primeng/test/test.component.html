@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8">
-    <p-table
-             [value]="cars"
-             [lazy]="true"
+    <p-table [value]="cars"
+             [responsive]="true"
              (onLazyLoad)="loadCarsLazy($event)"
              [paginator]="true"
-             [rows]="4"
+             [lazy]="true"
+             [rows]="rowsPerPage"
              [totalRecords]="totalRecords"
              [loading]="loading">
       <ng-template pTemplate="header" let-cols>
