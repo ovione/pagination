@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PaginatedTableModule } from "./paginated-table/paginated-table.module";
+import { PaginatedTableModule } from "./boostrap/paginated-table/paginated-table.module";
 
 @NgModule({
   declarations: [
