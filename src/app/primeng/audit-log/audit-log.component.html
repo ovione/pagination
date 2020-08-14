@@ -40,6 +40,7 @@
       <ng-template pTemplate="body" let-vo>
         <tr>
           <td *ngFor="let col of cols">
+            <span class="ui-column-title">{{col.header}}</span>
             {{vo[col.field]}}
           </td>
         </tr>
