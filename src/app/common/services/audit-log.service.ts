@@ -4,6 +4,7 @@ import { getAuditLogMocks } from '../mock/audit-log.mock';
 import { AuditLogModel } from '../model/audit-log.model';
 import {Observable, of} from 'rxjs';
 import { AuditLogRequestModel } from '../model/audit-log-request.model';
+import { AuditLogResponseModel } from '../model/audit-log-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +20,10 @@ export class AuditLogService {
     return getAuditLogMocks(size);
   }
 
-  getAsynch(alrm: AuditLogRequestModel): Observable<AuditLogModel[]> {
-    const totalNumberOfPages = Math.ceil(this.auditLogs.length / alrm.rowsPerPage) || 1;
-
-    if (alrm.pageNumber < 1)  {
-      return of([]);
-    } else if (alrm.pageNumber > totalNumberOfPages) {
-      return of([]);
-    }
-
+  getAsynch(alrm: AuditLogRequestModel): Observable<AuditLogResponseModel> {
     const start = (alrm.pageNumber - 1) * alrm.rowsPerPage;
     const end = Math.min(start + alrm.rowsPerPage, this.auditLogs.length);
 
-    return of(this.auditLogs.slice(start, end));
+    return of(new AuditLogResponseModel(this.auditLogs.slice(start, end), this.auditLogs.length));
   }
 }
