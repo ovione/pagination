@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuditLogTableComponent } from "./audit-log-table.component";
+import { AuditLogTableComponent } from './audit-log-table.component';
 
 @NgModule({
   imports: [
