@@ -23,9 +23,9 @@ export class AuditLogService {
     const totalNumberOfPages = Math.ceil(this.auditLogs.length / alrm.rowsPerPage) || 1;
 
     if (alrm.pageNumber < 1)  {
-      alrm.pageNumber = 1;
+      return of([]);
     } else if (alrm.pageNumber > totalNumberOfPages) {
-      alrm.pageNumber = totalNumberOfPages;
+      return of([]);
     }
 
     const start = (alrm.pageNumber - 1) * alrm.rowsPerPage;
