@@ -83,16 +83,29 @@ export class AuditLogComponent implements OnInit {
   private rowsPerPage = 4;
   private visiblePages = 5;
   private auditLogRequest: AuditLogRequestModel;
+  private cols: Array<any> = [];
 
   constructor(private auditLogService: AuditLogService) { }
 
   ngOnInit(): void {
     this.auditLogRequest = this.constructAuditLogRequestModel();
+    this.initializePrimengTable();
 
     this.auditLogService.getAsynch(this.auditLogRequest).subscribe({
       next: (auditLogs: AuditLogModel[]) => this.handleAuditLogs(auditLogs),
       error: (error) => this.handleException(error)
     });
+  }
+
+  private initializePrimengTable(): void {
+    this.cols = [
+      { field: 'id', header: 'Id' },
+      { field: 'date', header: 'Date' },
+      { field: 'action', header: 'Action' },
+      { field: 'username', header: 'User name' },
+      { field: 'comment', header: 'Comment' },
+      { field: 'link', header: 'Link' }
+    ];
   }
 
   private constructAuditLogRequestModel(): AuditLogRequestModel {
