@@ -59,4 +59,8 @@ export class AuditLogComponent implements OnInit {
       { field: 'link', header: 'Link' }
     ];
   }
+
+  modifyRowsPerPage(rowsPerPage: number): void {
+    this.rowsPerPage = rowsPerPage;
+  }
 }
