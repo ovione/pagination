@@ -22,14 +22,17 @@ export class AuditLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializePrimengTable();
+    this.loading = true;
   }
 
   getRowsData(event: LazyLoadEvent): void {
     this.loading = true;
-    this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
-      next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
-      error: (error) => this.handleException(error)
-    });
+    setTimeout(() => {
+      this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
+        next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
+        error: (error) => this.handleException(error)
+      });
+    }, 0);
   }
 
   private constructAuditLogRequestModel(event: LazyLoadEvent): AuditLogRequestModel {
