@@ -3,21 +3,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { PaginatedTableModule } from './boostrap/paginated-table/paginated-table.module';
-import { AuditLogModule } from './primeng/audit-log/audit-log.module';
+import { AuditLogUsageModule } from './audit-log-usage/audit-log-usage.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
 
-    PaginatedTableModule,
-    AuditLogModule
+    AuditLogUsageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

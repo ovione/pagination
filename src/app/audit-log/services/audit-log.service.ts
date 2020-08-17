@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { getAuditLogMocks } from '../mock/audit-log.mock';
-import { AuditLogModel } from '../../model/audit-log.model';
+import { AuditLogModel } from '../model/audit-log.model';
 import {Observable, of} from 'rxjs';
-import { AuditLogRequestModel } from '../../model/audit-log-request.model';
-import { AuditLogResponseModel } from '../../model/audit-log-response.model';
+import { AuditLogRequestModel } from '../model/audit-log-request.model';
+import { AuditLogResponseModel } from '../model/audit-log-response.model';
 
 @Injectable({
   providedIn: 'root'

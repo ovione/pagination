@@ -5,13 +5,14 @@ import { TableModule } from 'primeng/table';
 
 import { AuditLogComponent } from './audit-log.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
 
     TableModule
   ],
-  declarations: [AuditLogComponent],
-  exports: [AuditLogComponent]
+  declarations: [ AuditLogComponent ],
+  exports: [ AuditLogComponent ]
 })
 export class AuditLogModule { }

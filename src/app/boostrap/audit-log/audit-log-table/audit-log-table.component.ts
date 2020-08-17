@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { AuditLogModel } from "../../../common/model/audit-log.model";
+import { AuditLogModel } from "../../../audit-log/model/audit-log.model";
 
 @Component({
   selector: 'app-audit-log-table',

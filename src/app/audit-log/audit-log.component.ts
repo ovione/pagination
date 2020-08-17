@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { AuditLogService } from '../../common/audit-log/services/audit-log.service';
-import { AuditLogModel } from '../../common/model/audit-log.model';
-import { AuditLogRequestModel } from '../../common/model/audit-log-request.model';
-import { AuditLogResponseModel } from '../../common/model/audit-log-response.model';
+import { AuditLogService } from './services/audit-log.service';
+import { AuditLogRequestModel } from './model/audit-log-request.model';
+import { AuditLogResponseModel } from './model/audit-log-response.model';
 import { LazyLoadEvent } from 'primeng';
+import { TablePaginationBaseComponent } from '../common/table-pagination/table-pagination-base.component';
 
 @Component({
   selector: 'app-audit-log',
-  templateUrl: './audit-log.component.html',
+  templateUrl: '../common/table-pagination/table-pagination-primeng.component.html',
   styleUrls: ['./audit-log.component.scss']
 })
-export class AuditLogComponent implements OnInit {
-  rowsData: AuditLogModel[];
-  rowsPerPage = 4;
-  cols: any[];
-  loading: boolean;
-  totalRecords: number;
+export class AuditLogComponent extends TablePaginationBaseComponent implements OnInit {
+  @Input() public rowsPerPage = 4;
+  @Input() public rowsPerPageOptions = ['4', '8', '20'];
 
-  constructor(private auditLogService: AuditLogService) { }
+  constructor(private auditLogService: AuditLogService) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.initializePrimengTable();
+    this.initializeAuditLogTableTable();
     this.loading = true;
   }
 
@@ -49,7 +48,7 @@ export class AuditLogComponent implements OnInit {
     this.totalRecords = auditLogsResponse.totalRecords;
   }
 
-  private initializePrimengTable(): void {
+  private initializeAuditLogTableTable(): void {
     this.cols = [
       { field: 'id', header: 'Id' },
       { field: 'date', header: 'Date' },
