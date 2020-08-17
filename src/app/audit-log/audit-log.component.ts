@@ -20,7 +20,6 @@ export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implem
 
   ngOnInit(): void {
     this.initializeAuditLogTableTable();
-    this.loading = true;
   }
 
   getRowsData(event: LazyLoadEvent): void {
@@ -30,7 +29,7 @@ export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implem
         next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
         error: (error) => this.handleException(error)
       });
-    }, 0);
+    }, 1000);
   }
 
   private constructAuditLogRequestModel(event: LazyLoadEvent): AuditLogRequestModel {
