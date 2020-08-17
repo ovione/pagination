@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuditLogService } from '../../common/services/audit-log.service';
+import { AuditLogService } from '../../common/audit-log/services/audit-log.service';
 import { AuditLogModel } from '../../common/model/audit-log.model';
 import { AuditLogRequestModel } from '../../common/model/audit-log-request.model';
 import { AuditLogResponseModel } from '../../common/model/audit-log-response.model';

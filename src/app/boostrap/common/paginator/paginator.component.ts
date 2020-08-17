@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
-import { PaginatorModel } from '../../../common/model/paginator.model';
+import { PaginatorModel } from '../../model/paginator.model';
 
 @Component({
   selector: 'app-paginator',

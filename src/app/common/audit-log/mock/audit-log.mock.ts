@@ -1,4 +1,4 @@
-import {AuditLogModel} from '../model/audit-log.model';
+import {AuditLogModel} from '../../model/audit-log.model';
 
 export function getAuditLogMocks(size: number = 32): AuditLogModel[] {
   const auditLogSet: AuditLogModel[] = [];
