@@ -1,10 +1,10 @@
 import { LazyLoadEvent } from 'primeng';
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 import { AuditLogResponseModel } from '../../audit-log/model/audit-log-response.model';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class TablePaginationBase<T> {
+export abstract class TablePaginationBase<T> implements OnInit {
   @Input() public rowsPerPage = 4;
   @Input() public rowsPerPageOptions = ['4', '8', '20'];
   @Input() delay = 0;
@@ -14,6 +14,9 @@ export abstract class TablePaginationBase<T> {
   loading: boolean;
   rowsData: Array<any> = [];
 
+  constructor() {
+    this.loading = true;
+  }
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
     this.initializeAuditLogTableTable();
