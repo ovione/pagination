@@ -7,6 +7,7 @@ import { AuditLogResponseModel } from '../../audit-log/model/audit-log-response.
 export abstract class TablePaginationBase<T> {
   @Input() public rowsPerPage = 4;
   @Input() public rowsPerPageOptions = ['4', '8', '20'];
+  @Input() delay = 0;
 
   cols: Array<any> = [];
   totalRecords: number;
@@ -22,7 +23,7 @@ export abstract class TablePaginationBase<T> {
     this.loading = true;
     setTimeout(() => {
       this.getData(event);
-    }, 1000);
+    }, this.delay);
   }
 
   protected handleException(error: any): void {
