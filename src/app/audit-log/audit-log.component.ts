@@ -4,16 +4,14 @@ import { AuditLogService } from './services/audit-log.service';
 import { AuditLogRequestModel } from './model/audit-log-request.model';
 import { AuditLogResponseModel } from './model/audit-log-response.model';
 import { LazyLoadEvent } from 'primeng';
-import { TablePaginationBaseComponent } from '../common/table-pagination/table-pagination-base.component';
+import { TablePaginationBase } from '../common/table-pagination/table-pagination-base.directive';
 
 @Component({
   selector: 'app-audit-log',
   templateUrl: '../common/table-pagination/table-pagination-primeng.component.html',
   styleUrls: ['./audit-log.component.scss']
 })
-export class AuditLogComponent extends TablePaginationBaseComponent implements OnInit {
-  @Input() public rowsPerPage = 4;
-  @Input() public rowsPerPageOptions = ['4', '8', '20'];
+export class AuditLogComponent extends TablePaginationBase implements OnInit {
 
   constructor(private auditLogService: AuditLogService) {
     super();
