@@ -5,13 +5,14 @@ import { AuditLogRequestModel } from './model/audit-log-request.model';
 import { AuditLogResponseModel } from './model/audit-log-response.model';
 import { LazyLoadEvent } from 'primeng';
 import { TablePaginationBase } from '../common/table-pagination/table-pagination-base.directive';
+import { AuditLogModel } from './model/audit-log.model';
 
 @Component({
   selector: 'app-audit-log',
   templateUrl: '../common/table-pagination/table-pagination-primeng.component.html',
   styleUrls: ['./audit-log.component.scss']
 })
-export class AuditLogComponent extends TablePaginationBase implements OnInit {
+export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implements OnInit {
 
   constructor(private auditLogService: AuditLogService) {
     super();
@@ -26,7 +27,7 @@ export class AuditLogComponent extends TablePaginationBase implements OnInit {
     this.loading = true;
     setTimeout(() => {
       this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
-        next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse),
+        next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
         error: (error) => this.handleException(error)
       });
     }, 0);
@@ -34,16 +35,6 @@ export class AuditLogComponent extends TablePaginationBase implements OnInit {
 
   private constructAuditLogRequestModel(event: LazyLoadEvent): AuditLogRequestModel {
     return new AuditLogRequestModel(event.first, event.rows);
-  }
-
-  private handleException(error: any): void {
-    console.log('exception ' + error);
-  }
-
-  private handleAuditLogsResponse(auditLogsResponse: AuditLogResponseModel): void {
-    this.loading = false;
-    this.rowsData = auditLogsResponse.auditLogs;
-    this.totalRecords = auditLogsResponse.totalRecords;
   }
 
   private initializeAuditLogTableTable(): void {
