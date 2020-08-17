@@ -23,7 +23,7 @@ export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implem
     });
   }
 
-  initializeAuditLogTableTable(): void {
+  initializeHeaders(): void {
     this.cols = [
       { field: 'id', header: 'Id' },
       { field: 'date', header: 'Date' },

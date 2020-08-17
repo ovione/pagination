@@ -1,6 +1,5 @@
-import { LazyLoadEvent } from 'primeng';
 import { Directive, Input, OnInit } from '@angular/core';
-import { AuditLogResponseModel } from '../../audit-log/model/audit-log-response.model';
+import { LazyLoadEvent } from 'primeng';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -19,7 +18,7 @@ export abstract class TablePaginationBase<T> implements OnInit {
   }
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
-    this.initializeAuditLogTableTable();
+    this.initializeHeaders();
   }
 
   getRowsData(event: LazyLoadEvent): void {
@@ -39,7 +38,7 @@ export abstract class TablePaginationBase<T> implements OnInit {
     this.totalRecords = totalRecords;
   }
 
-  abstract initializeAuditLogTableTable(): void;
+  abstract initializeHeaders(): void;
   abstract getData(event: LazyLoadEvent): void;
 
 }
