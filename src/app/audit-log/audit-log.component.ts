@@ -18,7 +18,7 @@ export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implem
 
   getData(event: LazyLoadEvent): void {
     this.auditLogService.getAsynch(new AuditLogRequestModel(event.first, event.rows)).subscribe({
-      next: (auditLogsResponse: AuditLogResponseModel) => super.handleAuditLogsResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
+      next: (auditLogsResponse: AuditLogResponseModel) => super.handleResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
       error: (error) => super.handleException(error)
     });
   }

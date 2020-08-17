@@ -33,7 +33,7 @@ export abstract class TablePaginationBase<T> implements OnInit {
     console.log('exception ' + error);
   }
 
-  protected handleAuditLogsResponse(rowData: T[], totalRecords: number): void {
+  protected handleResponse(rowData: T[], totalRecords: number): void {
     this.loading = false;
     this.rowsData = rowData;
     this.totalRecords = totalRecords;
