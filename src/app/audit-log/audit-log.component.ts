@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LazyLoadEvent } from 'primeng';
 
 import { AuditLogService } from './services/audit-log.service';
 import { AuditLogRequestModel } from './model/audit-log-request.model';
 import { AuditLogResponseModel } from './model/audit-log-response.model';
-import { LazyLoadEvent } from 'primeng';
 import { TablePaginationBase } from '../common/table-pagination/table-pagination-base.directive';
 import { AuditLogModel } from './model/audit-log.model';
 
