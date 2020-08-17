@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="col-sm-2"><button (click)="modifyRowsPerPage(6)">rowsperpage is 6</button></div>
+  <div class="col-sm-2"></div>
   <div class="col-sm-8">
     <app-audit-log
+      [rowsPerPage] = "3"
+      [rowsPerPageOptions]="['4', '8', '20']"
     ></app-audit-log>
   </div>
   <div class="col-sm-2"></div>

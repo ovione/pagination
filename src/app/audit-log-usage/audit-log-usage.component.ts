@@ -5,10 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './audit-log-usage.component.html',
   styleUrls: ['./audit-log-usage.component.scss']
 })
-export class AuditLogUsageComponent {
-  rowsPerPage = 4;
-
-  modifyRowsPerPage(rowsPerPage: number): void {
-    this.rowsPerPage = rowsPerPage;
-  }
-}
+export class AuditLogUsageComponent {}
