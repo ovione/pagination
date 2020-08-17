@@ -14,29 +14,20 @@ import { AuditLogModel } from './model/audit-log.model';
 })
 export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implements OnInit {
 
-  constructor(private auditLogService: AuditLogService) {
-    super();
-  }
+  constructor(private auditLogService: AuditLogService) { super(); }
 
-  ngOnInit(): void {
-    this.initializeAuditLogTableTable();
-  }
-
-  getRowsData(event: LazyLoadEvent): void {
-    this.loading = true;
-    setTimeout(() => {
-      this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
-        next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
-        error: (error) => this.handleException(error)
-      });
-    }, 1000);
+  getData(event: LazyLoadEvent): void {
+    this.auditLogService.getAsynch(this.constructAuditLogRequestModel(event)).subscribe({
+      next: (auditLogsResponse: AuditLogResponseModel) => this.handleAuditLogsResponse(auditLogsResponse.auditLogs, auditLogsResponse.totalRecords),
+      error: (error) => this.handleException(error)
+    });
   }
 
   private constructAuditLogRequestModel(event: LazyLoadEvent): AuditLogRequestModel {
     return new AuditLogRequestModel(event.first, event.rows);
   }
 
-  private initializeAuditLogTableTable(): void {
+  initializeAuditLogTableTable(): void {
     this.cols = [
       { field: 'id', header: 'Id' },
       { field: 'date', header: 'Date' },
@@ -45,9 +36,5 @@ export class AuditLogComponent extends TablePaginationBase<AuditLogModel> implem
       { field: 'comment', header: 'Comment' },
       { field: 'link', header: 'Link' }
     ];
-  }
-
-  modifyRowsPerPage(rowsPerPage: number): void {
-    this.rowsPerPage = rowsPerPage;
   }
 }

@@ -13,6 +13,18 @@ export abstract class TablePaginationBase<T> {
   loading: boolean;
   rowsData: Array<any> = [];
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnInit(): void {
+    this.initializeAuditLogTableTable();
+  }
+
+  getRowsData(event: LazyLoadEvent): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.getData(event);
+    }, 1000);
+  }
+
   protected handleException(error: any): void {
     console.log('exception ' + error);
   }
@@ -23,6 +35,7 @@ export abstract class TablePaginationBase<T> {
     this.totalRecords = totalRecords;
   }
 
-  abstract getRowsData(event: LazyLoadEvent): void;
+  abstract initializeAuditLogTableTable(): void;
+  abstract getData(event: LazyLoadEvent): void;
 
 }
