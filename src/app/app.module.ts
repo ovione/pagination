@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AuditLogUsageModule } from './audit-log-usage/audit-log-usage.module';
+import { AuditLogUsageModule } from './features/audit-log-usage/audit-log-usage.module';
 
 @NgModule({
   declarations: [
